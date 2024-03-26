@@ -1,0 +1,17 @@
+#nossos stages
+stages:
+  #primeiro stage se chama build
+  - build
+#primeiro job se chama build
+build:
+  #job build pertence ao stage build
+  stage: build
+  #imagem docker com java 17 e ferramentas como apt-get
+  image: openjdk:17-bullseye
+  #o script desse job faz apenas um build usando o gradle
+  script:
+    - ./gradlew build
+  #produto final, acessível por outros stages
+  artifacts:
+    paths:
+      - ./build/libs/
